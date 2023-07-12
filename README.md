@@ -1,4 +1,4 @@
 # Predicting Credit-Worthiness of Small Businesses
-A project that classifies loan applications of small businesses as either approved or not approved.
 
-#### Case study of small businesses supported by the U.S. Small Business Administration(SBA)
+This task was aimed at building a loan approval classifier that predicts whether or not a loan application will be approved or not, based on the business' financial and credit history.
+#### Case study of businesses supported by the U.S. Small Business Administration(SBA)
