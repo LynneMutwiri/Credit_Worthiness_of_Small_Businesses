@@ -54,11 +54,27 @@ The data was sourced from the [following link]()
 
 - The Notebook used is under the file name `SBA.ipynb`
 
-- Install Streamlit:
 
-        pip install streamlit
+##  Deployment 
 
-- To run the app locally run the following on terminal:
+This loan filtering app was deployed on [Streamlit](https://streamlit.io/). 
+To deploy the app, you will need to have Streamlit installed.
 
-        streamlit run App/loan.py
+You can install Streamlit by running the following command in your terminal:
 
+<b> Install Streamlit:</b>
+
+    pip install streamlit
+
+You will need to clone this repository by following these steps:
+
+    git clone https://github.com/LynneMutwiri/Credit_Worthiness_of_Small_Businesses.git
+    cd Credit_Worthiness_of_Small_Businesses
+    
+<b> To run the app locally run the following on terminal:</b>
+
+    streamlit run App/App.py
+
+The input features were: `Gross Approval`, `Industry`, `Loan Term`,  `Number of Employees`, `NewExist` and `UrbanRural`  to predict  loan approval. 
+
+Upon doing a feature importance on the pre-trained model, we found out that the <b> Loan Term and the Gross Approval amount </b> are the two key features in determining whether a loan would pass the initial filtering sta
