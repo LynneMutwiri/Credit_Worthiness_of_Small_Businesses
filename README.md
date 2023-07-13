@@ -1,8 +1,10 @@
-# Predicting Credit-Worthiness of Small Businesses
+# Credit Alchemy: Small Business Creditworthiness Demystified
+## Predicting Credit-Worthiness of Small Businesses
+
 <img width="1412" alt="s" src="https://github.com/LynneMutwiri/Credit_Worthiness_of_Small_Businesses/assets/124343722/3d6fe1ec-f996-44fc-b064-114ed496841b">
 
-This task is aimed at building a loan approval classifier that predicts whether or not a loan application will be approved, based on the business' financial and credit history.
-#### Case study of businesses supported by the U.S. Small Business Administration(SBA) found [here](https://github.com/LynneMutwiri/Credit_Worthiness_of_Small_Businesses).
+This task is aimed at building a loan approval classifier that predicts whether or not a loan application for a small business will be approved, based on the business' financial and credit history. After evaluating out different models, both stand-alones and ensemble, we found that XGBoost predicts the target variable 
+#### Case study of businesses supported by the U.S. Small Business Administration(SBA) found [here](https://data.sba.gov/dataset/).
 
 #### Authors
 1. [Brian Njau](https://github.com/Brian-Njau)
@@ -11,6 +13,41 @@ This task is aimed at building a loan approval classifier that predicts whether 
 4. [Leo Kariuki](https://github.com/leokariuki)
 5. [Lynne Mutwiri](https://github.com/LynneMutwiri)
 6. [Stella Kitur](https://github.com/stellacherotich)
+
+##  Deployment 
+
+This loan filtering app was deployed on [Streamlit](https://streamlit.io/). 
+To deploy the app, you will need to have Streamlit installed.
+
+You can install Streamlit by running the following command in your terminal:
+
+<b> Install Streamlit:</b>
+
+    pip install streamlit
+
+You will need to clone this repository by following these steps:
+
+    git clone https://github.com/LynneMutwiri/Credit_Worthiness_of_Small_Businesses.git
+    cd Credit_Worthiness_of_Small_Businesses
+    
+<b> To run the app locally run the following on terminal:</b>
+
+    streamlit run App/App.py
+
+The input features were: `Gross Approval`, `Industry`, `Loan Term`,  `Number of Employees`, `NewExist` and `UrbanRural`  to predict  loan approval. 
+
+## Business Understanding and Data Understanding
+
+The data was sourced from the official [SBA Open Data source](https://data.sba.gov/dataset/). It had 899,164 rows and 27 columns.
+Data Preparation included the following:
+* Handling of missing values.
+* Changing of data types to appropriate format.
+* Appropriately dropping missing values.
+* Feature Engineering.
+
+## Modeling and Evaluation
+
+
 
 ## <span style="color:darkred"> Project Overview </span>
 This project focuses on utilizing the dataset from the U.S. Small Business Administration to develop a predictive model for loan application approval. By analyzing relevant factors and historical loan data, the project aims to create a reliable system that assists the SBA in making informed decisions while minimizing the risk of defaults.
@@ -55,27 +92,5 @@ The data was sourced from this [link]().
 
 - The Notebook used is under the file name `SBA.ipynb`
 
-
-##  Deployment 
-
-This loan filtering app was deployed on [Streamlit](https://streamlit.io/). 
-To deploy the app, you will need to have Streamlit installed.
-
-You can install Streamlit by running the following command in your terminal:
-
-<b> Install Streamlit:</b>
-
-    pip install streamlit
-
-You will need to clone this repository by following these steps:
-
-    git clone https://github.com/LynneMutwiri/Credit_Worthiness_of_Small_Businesses.git
-    cd Credit_Worthiness_of_Small_Businesses
-    
-<b> To run the app locally run the following on terminal:</b>
-
-    streamlit run App/App.py
-
-The input features were: `Gross Approval`, `Industry`, `Loan Term`,  `Number of Employees`, `NewExist` and `UrbanRural`  to predict  loan approval. 
 
 Upon doing a feature importance on the pre-trained model, we found out that the <b> Loan Term and the Gross Approval amount </b> are the two key features in determining whether a loan would pass the initial filtering sta
