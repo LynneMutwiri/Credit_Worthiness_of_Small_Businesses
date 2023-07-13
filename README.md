@@ -1,7 +1,7 @@
 # Predicting Credit-Worthiness of Small Businesses
 
 This task is aimed at building a loan approval classifier that predicts whether or not a loan application will be approved, based on the business' financial and credit history.
-#### Case study of businesses supported by the U.S. Small Business Administration(SBA) found [here](https://github.com/LynneMutwiri/Credit_Worthiness_of_Small_Businesses) 
+#### Case study of businesses supported by the U.S. Small Business Administration(SBA) found [here](https://github.com/LynneMutwiri/Credit_Worthiness_of_Small_Businesses).
 
 #### Authors
 1. [Brian Njau](https://github.com/Brian-Njau)
@@ -28,7 +28,7 @@ Accuracy: 85% accuracy which measures the overall correctness of the model's pre
 
 ## <span style="color:darkred"> Data Understanding </span>
 
-The data was sourced from the [following link]()
+The data was sourced from this [link]().
 
 -- Brief summary of the data (rows, columns)
 
