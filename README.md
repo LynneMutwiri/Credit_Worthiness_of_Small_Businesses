@@ -73,14 +73,24 @@ The input features were: `Gross Approval`, `Industry`, `Loan Term`,  `Number of 
 
 Upon doing a feature importance on the pre-trained model, we found out that the <b> Loan Term </b> and the <b> Gross Approval amount </b> are the two key features in determining whether a loan would pass the initial filtering stage. 
 
+## <b> Recommendations </b>
+Based on the analysis that we have done, we came up with five main areas in which the SBA can dive deeper into, these areas included:
 
+1. Loan Term 
+
+2. Size of the Business 
+
+3. Location
+
+4. Business Existence Period 
+
+5. Industry 
 ## Conclusion
 
 * With the power of data, SBA can now make accurate predictions and conduct an initial filtration without human intervention. Clients can also get a feel of the major factors that would deter them from getting a loan and adjust accordingly by utilizing some of the existing services that are provided by the SBA.
 
 
 * This would be helpful also in addressing the issue of unemployment as it would further help encourage more entrepreneurs and small businesses to seek support in order to leverage their businesses; which will also increase the employment rate as a domino effect. 
-
 
 ## Navigating the Repository
 
