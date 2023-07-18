@@ -65,16 +65,16 @@ You can install Streamlit by running the following commands in your terminal:
     pip install streamlit
 The Streamlit [documentation](https://docs.streamlit.io/) is provided for your convenience, in case of any errors. 
     
-<b> To run the app locally run the following on terminal:</b>
+<b> To run the app locally run the following on the terminal:</b>
 
-    streamlit run App/App.py
+    streamlit run sba.py
 
-The input features were: `Gross Approval`, `Industry`, `Loan Term`,  `Number of Employees`, `NewExist` and `UrbanRural`  to predict  loan approval. 
+The input features were: `Gross Approval`, `Industry`, `Loan Term`,  `Number of Employees`, `NewExist`, and `UrbanRural`  to predict  loan approval. 
 
 Upon doing a feature importance on the pre-trained model, we found out that the <b> Loan Term </b> and the <b> Gross Approval amount </b> are the two key features in determining whether a loan would pass the initial filtering stage. 
 
 ## <b> Recommendations </b>
-Based on the analysis that we have done, we came up with five main areas in which the SBA can dive deeper into, these areas included:
+Based on the analysis that we have done, we came up with five main areas into which the SBA can dive deeper, these areas included:
 
 1. Loan Term 
 
@@ -106,7 +106,7 @@ Based on the analysis that we have done, we came up with five main areas in whic
         Jupyter Notebook
         GitHub 
 
-- To review the full analysis kindly refer to the [Jupyter Notebook](https://github.com/LynneMutwiri/Credit_Worthiness_of_Small_Businesses/blob/main/SBA.ipynb) as well as the Presentation
+- To review the full analysis kindly refer to the [Jupyter Notebook](https://github.com/LynneMutwiri/Credit_Worthiness_of_Small_Businesses/blob/main/SBA.ipynb) as well as the [Presentation](https://www.canva.com/design/DAFosOV42nk/NheeBXGaVm3ooDypGIZr8g/edit?utm_content=DAFosOV42nk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 ---
 #### Project Collaborators
 1. [Brian Njau](https://github.com/Brian-Njau)
