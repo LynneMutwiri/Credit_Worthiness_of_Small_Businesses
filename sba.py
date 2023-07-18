@@ -2,19 +2,24 @@ import streamlit as st
 import pandas as pd
 import pickle
 import time
+from pyngrok import ngrok 
 
 # Load the pre-trained model
 with open("App/pipeline.pkl", "rb") as file:
     pipeline = pickle.load(file)
 
-def process_loan_application(form_data):
-    columns = ['GrAppv', 'Term', 'NoEmp', 'NewExist', 'UrbanRural', 'Industry']
-    df = pd.DataFrame([form_data], columns=columns)
+
+def process_loan_application(form_data, progress):
+    # Check if the required fields are in the form_data
+    required_fields = ['prev_loan_status', 'GrAppv', 'Term', 'NoEmp', 'NewExist', 'UrbanRural', 'Industry']
+    if not all(field in form_data for field in required_fields):
+        st.error("Please fill in all the required fields.")
+        return
 
     # Make predictions using the loaded model
+    columns = ['GrAppv', 'Term', 'NoEmp', 'NewExist', 'UrbanRural', 'Industry']
+    df = pd.DataFrame([form_data], columns=columns)
     prediction = pipeline.predict(df)
-    # Adding a progress bar
-    progress = st.progress(0)
 
     # Simulating some delay to show progress
     for i in range(100):
@@ -23,7 +28,6 @@ def process_loan_application(form_data):
 
     # After the progress bar completes, display the loan application result
     st.write("Loan application processing is complete. See the result below.")
-    
     
     # Display the prediction result
     if form_data['prev_loan_status'] == 'No':
@@ -35,15 +39,13 @@ def process_loan_application(form_data):
                        \n Please check on the following to improve your chances of getting an SBA loan: \n \
                        \n 1. Find a suitable balance between the loan amount and the repayment period \n \
                        \n 2. Contact one of our [agents](https://www.sba.gov/local-assistance) to assist you in your application process \n \
-                       \n 3. Explore some of our resources to help you get started \n \
-                       \n [SCORE Business Mentoring](https://www.sba.gov/local-assistance/resource-partners/score-business-mentoring) \n'''
+                       \n 3. Explore some of our [resources](https://www.sba.gov/local-assistance/resource-partners/score-business-mentoring)to help you get started \n'''
         else:
             result = """Congratulations. You have passed the SBA initial loan processing analysis.\n\
-                        Please proceed to the next step and upload necessary documents. \
-                        We'll be in touch shortly"""
+                       Please proceed to the next step and upload necessary documents. \
+                       We'll be in touch shortly"""
 
     return result
-    
 
 def home_page():
     st.title("Small Business Administration Prime")
@@ -56,25 +58,20 @@ def home_page():
     st.markdown("### How to Get Started")
     st.write("Please answer the following question to start your loan application process.")
 
-    # Display the "Start Application" button
-    if st.button("Start Application"):
-        loan_application()
-
 def loan_application():
     st.markdown("---")
     st.subheader("Classify Your Loan Application in Seconds")
 
-    MembershipStatus = st.selectbox("Are you a member of the SBA?",["Yes", "No"])
+    MembershipStatus = st.selectbox("Are you a member of the SBA?",["No", "Yes"])
 
+    PrevLoanStatus = "Yes"  # Default value
     if MembershipStatus == 'Yes':
         PrevLoan = st.selectbox("Have you applied for an SBA Loan before",["Yes", "No"])
         if PrevLoan == "Yes":
             PrevLoanStatus = st.selectbox("Did you repay your previous loan in time? \n \
             Note: You'll be required to submit verification documents if you proceed",["Yes", "No", "In Progress"])
-        else:
-            PrevLoanStatus = "Yes"
         
-        GrAppv = int(st.number_input("Loan Amount",value=0,step=1))
+        GrAppv = int(st.number_input("Loan Amount (USD)",step=1))
         Term = int(st.number_input("Loan Term (In months)",value=0,step=1))
         NewExist = int(st.number_input("How long has the business been in operation? (In Months)",value=0,step=1))
         Location = st.selectbox("Where is the business located?", ["Urban", "Semi-Urban" , "Rural"])
@@ -105,7 +102,7 @@ def loan_application():
 
         # Display the prediction result
         if PrevLoanStatus == 'No':
-            result= 'Sorry. The SBA does not guarantee new loans to businesses who have not repaid their previous loan. \
+            result = 'Sorry. The SBA does not guarantee new loans to businesses who have not repaid their previous loan. \
                 Kindly repay your previous loan in order to apply for a new loan'
         else:
             if prediction[0] == 0:
@@ -121,10 +118,23 @@ def loan_application():
 
         submit_button = st.button("Submit")
         if submit_button:
+            # Call the process_loan_application function with the progress bar widget
+            progress = st.progress(0)
+            result = process_loan_application(
+                {'prev_loan_status': PrevLoanStatus, 'GrAppv': GrAppv, 'Term': Term,
+                 'NoEmp': NoEmp, 'NewExist': NewExist, 'UrbanRural': UrbanRural, 'Industry': Industry},
+                progress
+            )
             st.write(result)
     else:
         # Display a message for non-members
         st.write("You need to be an SBA member to apply. Kindly get in touch or visit our [website](https://www.sba.gov/) to apply")
+        submit_button = st.button("Submit")
+        if submit_button:
+            # Call the process_loan_application function with empty form_data for non-members
+            progress = st.progress(0)
+            result = process_loan_application({}, progress)
+            st.write(result)
 
 def main():
     home_page()
